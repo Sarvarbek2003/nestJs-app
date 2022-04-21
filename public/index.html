@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style-type: none;
+        }
+        .continer{
+            width: 1300px;
+            /* height: 600px; */
+            margin: 50px auto;             
+        }  
+        main{
+            display: flex;
+        }
+
+        .usercontiner{
+            width: 30.5%;
+            display: flex;
+            flex-direction: column;
+            border: solid 1px black;
+            overflow-y: auto;
+            height: 750px;
+        }
+
+        .bookcontiner{
+            width: 70.5%;
+            display: flex;
+            flex-direction: column;
+            border: solid 1px black;
+            overflow-y: auto;
+            height: 750px;
+        }
+
+        .usercontiner div {
+            width: 390px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border: solid 1px black;
+        }
+
+        .bookcontiner .headerdiv{
+            display: flex;
+            width: 906px;
+            position: absolute;
+            align-items: center;
+            background-color: white;
+            border: solid 1px black;
+            /* border-bottom: solid 1px black; */
+        }
+
+        .bookcontiner .div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bookcontiner .headerdiv #logout{
+            margin-left: auto;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .bookcontiner .headerdiv #addBook{
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        
+        .bookcontiner .headerdiv h1{
+            margin-left: auto;
+        }
+        .usersList {
+            display: flex;
+            margin-top: 37px;
+            flex-direction: column;
+            border-top: solid 1px black;
+        }
+
+        .user{
+            padding: 20px;
+            border-bottom: solid 1px black;
+        }
+        .books{
+            display: flex;
+            width: 100%;
+            margin-top: 40px;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .books li {
+            width: 235px;
+            height: 300px;
+            margin: 29px;
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            border: solid 1px black;
+            border-radius: 10px;
+        }
+
+        .books li .img {
+            width:232px;
+            height: 170px;
+            border-radius: 10px;
+        }
+
+        .books h3{
+            padding: 10px;
+        }
+        .books p{
+            padding-left: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="continer">
+        <main>
+            <div class="usercontiner">
+                <div>
+                    <h1>USERS</h1>
+                </div>
+                <ul class="usersList">
+                   
+                </ul>
+            </div>
+            <div class="bookcontiner">
+               
+                <div class="div">
+                    <ul class="books">
+                    </ul>
+                </div>
+                <div class="headerdiv">
+                    <h3 id="addBook"> <a href="./addBook">ADD</a></h3>
+                    <h1>BOOKS</h1>
+                    <h3 id="logout"> <a href="#">Logout</a></h3>
+                </div>      
+            </div>
+        </main>
+    </div>
+    <script src="../js/util.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+</html>
+
