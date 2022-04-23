@@ -1,6 +1,6 @@
 const userslist = document.querySelector('.usersList')
 const bookslist = document.querySelector('.books')
-let UserId = window.localStorage.getItem('token')  ? JSON.parse(window.localStorage.getItem('token')) : 0
+let UserId = JSON.parse(window.localStorage.getItem('userId')) 
 
 let users;
 let books;
@@ -22,15 +22,20 @@ logout.onclick = () => {
 
 function renderUsers (users){
     users.forEach(el => {
-        const [li,h2,p] = createElements('li','h2','p');
+        const [li,div1,img,div2,h2,p] = createElements('li','div','img','div','h2','p');
         li.setAttribute('class','user');
         h2.setAttribute('class','firstName');
         p.setAttribute('class','email');
-
+        img.setAttribute('class','imgg')
+        img.setAttribute('src',backendApi+'/'+el.imgUrl)
+        div1.append(img)
+        
         h2.textContent = el.firstName || 'Firstname';
         p.textContent = el.email;
 
-        li.append(h2,p);
+        div2.append(h2, p)
+
+        li.append(div1,div2);
         userslist.append(li);
 
         li.onclick = () => {
@@ -43,7 +48,7 @@ function renderUsers (users){
 function renderBooks(id) {
     bookslist.innerHTML = null
     if(!books.length) return
-    books.forEach(el => {
+    books.forEach((el,index) => {
         if(el.userId == id){
             const [li,img,h3,p,img2, img3, btn] = createElements('li','img','h3','p','img', 'img','button');
             img.setAttribute('src', el.link);
@@ -63,7 +68,7 @@ function renderBooks(id) {
                 
                 img2.onclick = () => {
                     li.remove()
-                    req('/delete/'+el.id, 'DELETE');
+                    req('/delete/book/'+el.id, 'DELETE');
                 }
 
                 h3.onkeyup = () => {
@@ -90,14 +95,17 @@ function renderBooks(id) {
 }
 
 async function update(userId, titlee, descriptionn){
-    
     let body = {
         id: userId,
         title: titlee,
         description: descriptionn
     }
-    let res = await req('/update', 'PUT', body);
-    if(res.status == '200') alert (res.message)
+    let res = await req('/update/book', 'PUT', body);
+    if(res.status == '200') {
+        users = await req('/users');
+        books = await req('/books');
+        alert (res.message)
+    }
     else alert ('xatolik')
     
 }

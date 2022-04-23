@@ -14,7 +14,8 @@ export class UserService {
                     LastName: true,
                     firstName: true,
                     createAt: true,
-                    updateAt: true
+                    updateAt: true,
+                    imgUrl: true
                 }
             })
             return users

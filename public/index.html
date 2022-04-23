@@ -40,7 +40,7 @@
             height: 750px;
         }
 
-        .usercontiner div {
+        .usercontiner .headerUser {
             width: 390px;
             position: absolute;
             display: flex;
@@ -91,10 +91,21 @@
             border-top: solid 1px black;
         }
 
-        .user{
-            padding: 20px;
+        .user{  
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* padding: 5px; */
             border-bottom: solid 1px black;
         }
+
+        .imgg{
+            width: 60px;
+            height: 60px;
+            margin: 15px;
+            border-radius: 50%;
+        }
+
         .books{
             display: flex;
             width: 100%;
@@ -134,11 +145,12 @@
     <div class="continer">
         <main>
             <div class="usercontiner">
-                <div>
+                <div class="headerUser">
                     <h1>USERS</h1>
                 </div>
                 <ul class="usersList">
-                   
+                    <li class="user">
+                    </li>
                 </ul>
             </div>
             <div class="bookcontiner">

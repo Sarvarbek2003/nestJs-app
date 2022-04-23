@@ -1,5 +1,6 @@
-import { Controller,Get,Render, Dependencies} from "@nestjs/common";
+import { Controller,Get,Render,UseGuards, Dependencies} from "@nestjs/common";
 import { renderService } from "./rend.service";
+import { ApiBearerAuth } from "@nestjs/swagger";
 
 @Controller('/')
 @Dependencies(renderService)
@@ -17,6 +18,7 @@ export class renderController {
   @Render('register.html')
    reg() {}
 
+  @ApiBearerAuth('access_token')
   @Get("addbook")
   @Render('addbook.html')
    addbook() {}

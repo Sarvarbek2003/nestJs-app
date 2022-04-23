@@ -16,8 +16,9 @@ form.onsubmit = async(ev) => {
         lastName
     }
     let res = await req('/auth/login','POST',body);
-    if (res?.id){
-        window.localStorage.setItem('token', res.id)
+    if (res?.access_token){
+        window.localStorage.setItem('token', res.access_token)
+        window.localStorage.setItem('userId', res.id)
         window.location = '/'
     }else  {
         alert(res.message)
