@@ -1,6 +1,6 @@
 import { ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { AuthDto } from "./dto";
+import { AuthDto, LoginDto } from "./dto";
 import * as argon from "argon2";
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from "@nestjs/config";
@@ -44,7 +44,7 @@ export class AuthService {
             throw new UnauthorizedException("Registration error")
         }
     }
-    async login (dto: AuthDto){
+    async login (dto: LoginDto){
        try {
             const user = await this.prisma.user.findUnique({
                 where: {

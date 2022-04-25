@@ -1,7 +1,7 @@
-import { Body, Controller, Res, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { AuthService } from "./auth.service";
-import { AuthDto } from "./dto";
+import { AuthDto, LoginDto } from "./dto";
 import { ApiBody, ApiCreatedResponse, ApiConsumes, ApiOkResponse, ApiUnauthorizedResponse } from "@nestjs/swagger";
 
 
@@ -18,15 +18,15 @@ export class AuthController {
         schema: {
         type: 'object',
         properties: {
-            email: {type:'String'},
+            email: {type:'String' },
             password: {type:'String'},
             firstName: {type:'String'},
             lastName: {type:'String'},
-          file: {
-            type: 'string',
-            format: 'binary',
+            file: {
+              type: 'string',
+              format: 'binary',
+            },
           },
-        },
       }, })
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file: Express.Multer.File, @Body() dto: AuthDto) { 
@@ -36,8 +36,8 @@ export class AuthController {
     @Post('login')
     @ApiOkResponse({description: "User login"})
     @ApiUnauthorizedResponse({description: "Wrong username or password"})
-    @ApiBody({ type: AuthDto })
-    login(@Body() dto: AuthDto ){
+    @ApiBody({ type: LoginDto })
+    login(@Body() dto: LoginDto ){
         return this.authService.login(dto)
     }
     
